@@ -39,7 +39,7 @@ const Home = () => {
               </div>
 
               <div className="flex flex-col gap-4 sm:flex-row">
-                <Link to="/user/signup">
+                <Link to="/register">
                   <MainButton className="group">Get Started</MainButton>
                 </Link>
               </div>

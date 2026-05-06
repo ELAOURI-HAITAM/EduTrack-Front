@@ -1,38 +1,46 @@
-import React from "react";
+import { Label, TextInput } from "flowbite-react";
+import React, { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 
-const SimpleInput = ({
-  value,
-  label,
-  icon,
-  type,
-  uppercase = false,
-  readonly = false,
-  id = "simple-input",
-  onChange,
-}) => {
+const SimpleInput = ({ label, value, icon, color, type = "text", placeholder = "", onchange, className = "" }) => {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const inputType = type === "password" && showPassword ? "text" : type;
+
   return (
-    <div className="mb-4 w-full">
-      <label
-        htmlFor={id}
-        className="mb-1 block text-lg font-medium text-gray-700 dark:text-black"
-      >
-        {label}
-      </label>
+    <div className={`w-full ${className}`}>
+      <div className="mb-2 block">
+        <Label className="text-lg" style={{ color: color }}>
+          {label}
+        </Label>
+      </div>
       <div className="relative">
-        <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center ps-3 pe-2 text-gray-400 dark:text-gray-300">
-          {icon}
-        </div>
-        <input
-        readOnly={readonly}
-          onChange={onChange}
-          type={type}
-          id={id}
+        <TextInput
           value={value}
-          className={`block ${uppercase && 'uppercase'} w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 pl-11 text-sm text-gray-900 placeholder:text-sm focus:border-blue-500 focus:ring-blue-500 sm:text-base dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500`}
+          type={inputType}
+          id="username3"
+          placeholder={placeholder}
+          addon={icon}
+          required
+          onChange={onchange}
+          className="w-full pr-10"
         />
+        {type === "password" && (
+          <button
+            type="button"
+            onClick={togglePasswordVisibility}
+            className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600"
+          >
+            {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+          </button>
+        )}
       </div>
     </div>
   );
 };
 
-export { SimpleInput };
+export default SimpleInput;

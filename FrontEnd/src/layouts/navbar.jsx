@@ -47,7 +47,7 @@ const Navbar = () => {
                   {item}
                 </button>
               ))}
-              <Link to={"/user/login"}>
+              <Link to={"/login"}>
               <MainButton variant="outline" className="ml-4">
                 Login
               </MainButton>
