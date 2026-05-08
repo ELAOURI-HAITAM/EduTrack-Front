@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from '../assets/vite.svg'
+import Logo from '../assets/eduTrack1.png'
 import MainButton from "../components/Buttons/main_button";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,10 +28,10 @@ const Navbar = () => {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center space-x-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg ">
+            <div className="flex h-12 w-24 mt-4 items-center justify-center rounded-lg ">
               <img src={Logo}/>
             </div>
-            <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-xl font-bold text-transparent">
+            <span className="bg-[#437eff] bg-clip-text text-2xl mt-4 font-bold text-transparent">
               EduTrack
             </span>
           </div>

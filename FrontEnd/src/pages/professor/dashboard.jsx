@@ -1,10 +1,13 @@
 import React from "react";
 import { UseUser } from "../../hooks/useUser";
+import Sidebar from "../../layouts/sidebar";
 
 const ProfessorDashboard = () => {
-
-  
-  return <div>professor dashboard</div>;
+  return (
+    <>
+    hello world
+    </>
+  );
 };
 
 export default ProfessorDashboard;
