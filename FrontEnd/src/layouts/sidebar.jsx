@@ -6,12 +6,16 @@ import {
   Bell,
   Search,
   Settings,
-  LogOut,
 } from "lucide-react";
 import Logo from "../assets/eduTrack2.png";
+import Male from "../assets/auth/Man.png"
+import Female from "../assets/auth/Woman.png"
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { UseUser } from "../hooks/useUser";
+import LogOut from "../features/auth/logout";
+import { FaFemale, FaMale } from "react-icons/fa";
+import { SlUser } from "react-icons/sl";
 
 
 const Sidebar = ({ links }) => {
@@ -74,7 +78,7 @@ const Sidebar = ({ links }) => {
                   className="group flex items-center space-x-3 rounded-xl p-2 transition-all duration-200 hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br from-blue-400 to-purple-500 text-sm font-semibold text-white shadow-lg">
-                    {isLoading ? "?" : user?.first_name?.charAt(0)}
+                    {user?.gender == "Male" ? (<img src={Male}/>) : (<img src={Female}/>)}
                   </div>
                   <div className="hidden text-left md:block">
                     <div className="text-sm font-semibold text-gray-900 dark:text-white">
@@ -98,7 +102,7 @@ const Sidebar = ({ links }) => {
                     <div className="border-b border-gray-200/50 bg-linear-to-r from-blue-50 to-purple-50 px-6 py-5 dark:border-gray-600/50 dark:from-gray-800 dark:to-gray-800">
                       <div className="flex items-center space-x-4">
                         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-linear-to-br from-blue-400 to-purple-500 font-semibold text-white shadow-lg">
-                          {user?.first_name?.charAt(0)}
+                          {user?.gender == "Male" ? (<img src={Male}/>) : (<img src={Female}/>)}
                         </div>
                         <div className="flex-1">
                           <div className="text-sm font-semibold text-gray-900 dark:text-white">
@@ -131,13 +135,7 @@ const Sidebar = ({ links }) => {
                         </Link>
                       </a>
                       <div className="my-2 border-t border-gray-200/50 dark:border-gray-600/50"></div>
-                      <button className="group flex w-full items-center px-6 py-3 text-sm text-red-600 transition-all duration-200 hover:bg-red-50 dark:text-red-400 dark:hover:bg-gray-600">
-                        <LogOut
-                          size={18}
-                          className="mr-3 transition-transform duration-200 group-hover:scale-110"
-                        />
-                        Logout
-                      </button>
+                      <LogOut/>
                     </div>
                   </div>
                 )}

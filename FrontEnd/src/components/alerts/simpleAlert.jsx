@@ -1,9 +1,9 @@
 import React from "react";
 import { Alert } from "flowbite-react";
 
-const SimpleAlert = ({color , message , icon}) =>{
+const SimpleAlert = ({color,className , message , icon}) =>{
   return (
-    <Alert color={color} icon={icon}>
+    <Alert className={className} color={color} icon={icon}>
       <span className="font-medium">{message}</span>
     </Alert>
   );

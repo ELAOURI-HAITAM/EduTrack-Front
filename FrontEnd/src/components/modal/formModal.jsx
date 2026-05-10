@@ -5,8 +5,9 @@ const FormModal = ({
   title,
   show,
   onClose,
+  cancel = "Cancel",
   onSubmit = () => {},
-  action = "Submit",
+  action = "Submit" || null,
   loading = false,
   size = "2xl",
   children,
@@ -22,18 +23,19 @@ const FormModal = ({
             data-aos-duration="800" show={show} size={size} onClose={onClose} popup>
       <ModalHeader />
       <ModalBody>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form encType="multipart/form-data" onSubmit={handleSubmit} className="space-y-6">
           <h3 className="text-xl font-medium text-gray-900 dark:text-white">
             {title}
           </h3>
           {children}
           <div className="flex flex-wrap justify-end gap-3 pt-3">
-            <Button color="gray" type="button" onClick={onClose}>
-              Cancel
+            <Button className="cursor-pointer" color="gray" type="button" onClick={onClose}>
+              {cancel}
             </Button>
-            <Button type="submit" disabled={loading}>
+            {action == null ? ""  :(<Button className="cursor-pointer" type="submit" disabled={loading}>
               {loading ? "Loading..." : action}
-            </Button>
+            </Button>) }
+            
           </div>
         </form>
       </ModalBody>

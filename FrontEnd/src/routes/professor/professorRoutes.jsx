@@ -13,6 +13,12 @@ import {
 } from "lucide-react";
 import Sidebar from "../../layouts/sidebar";
 import LinkComponent from "../../components/LinkComponent/linkComponent";
+import ProfessorModules from "../../features/professor/modules/modulesList";
+import ProfessorProfile from "../../features/professor/settings/profile";
+import ProfessorFollowers from "../../features/professor/community/professorFollowers";
+import ProfessorAssignments from "../../features/professor/assignments/assignmentsList";
+import ResourceDetails from "../../features/professor/assignments/resourceDetails";
+import StudentTrackingPage from "../../features/professor/tracking/studentTrackingPage";
 const ProfessorRoutes = () => {
   const links = [
     {
@@ -36,7 +42,7 @@ const ProfessorRoutes = () => {
       path: "/professor/student-tracking",
     },
     {
-      title: "My Community",
+      title: "My Followers",
       icon: <Users />,
       path: "/professor/my-community",
     },
@@ -54,6 +60,11 @@ const ProfessorRoutes = () => {
         }
       >
         <Route path="/professor/dashboard" element={<ProfessorDashboard />} />
+        <Route path="/professor/modules" element={<ProfessorModules />} />
+          <Route path="/professor/assignments" element={<ProfessorAssignments />} />
+       <Route path="/professor/student-tracking" element={<StudentTrackingPage />} />
+        <Route path="/professor/my-community" element={<ProfessorFollowers />} />
+        <Route path="/professor/profile" element={<ProfessorProfile />} />
       </Route>
     </>
   );

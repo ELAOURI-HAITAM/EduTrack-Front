@@ -17,6 +17,7 @@ const AuthLogin = () => {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const handleLogin = async (event) => {
     event.preventDefault();
 
@@ -37,14 +38,13 @@ const AuthLogin = () => {
       );
       console.log(response.data);
       setSuccess(response.data.message || "Login Successful");
+      await queryClient.refetchQueries({ queryKey: ["user"] });
       const role = response.data.role;
-      setTimeout(() => {
-        if (role == "Student") {
-          navigate("/student/dashboard");
-        } else if (role == "Professor") {
-          navigate("/professor/dashboard");
-        }
-      }, 1000);
+      if (role == "Student") {
+        navigate("/student/dashboard");
+      } else if (role == "Professor") {
+        navigate("/professor/dashboard");
+      }
     } catch (error) {
       if (error.response && error.response.data) {
         setError(error.response.data.detail);

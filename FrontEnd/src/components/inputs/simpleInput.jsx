@@ -2,7 +2,17 @@ import { Label, TextInput } from "flowbite-react";
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 
-const SimpleInput = ({ label, value, icon, color, type = "text", placeholder = "", onchange, className = "" }) => {
+const SimpleInput = ({
+  label,
+  value,
+  read_only = false,
+  icon,
+  color,
+  type = "text",
+  placeholder = "",
+  onchange,
+  className = "",
+}) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -20,6 +30,7 @@ const SimpleInput = ({ label, value, icon, color, type = "text", placeholder = "
       </div>
       <div className="relative">
         <TextInput
+          readOnly={read_only}
           value={value}
           type={inputType}
           id="username3"
