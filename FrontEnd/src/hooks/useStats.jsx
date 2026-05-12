@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchProfessorStats } from "../api/stats";
+import { fetchProfessorStats, fetchStudentStats } from "../api/stats";
 
 export const useGetProfessorStats = () => {
   return useQuery({
@@ -7,3 +7,12 @@ export const useGetProfessorStats = () => {
     queryFn: fetchProfessorStats,
   });
 };
+
+
+
+export const useGetStudentStats = () => {
+  return useQuery({
+    queryKey: ["student"],
+    queryFn: fetchStudentStats,
+  });
+}

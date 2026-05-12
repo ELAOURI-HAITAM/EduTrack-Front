@@ -119,21 +119,7 @@ const Sidebar = ({ links }) => {
                     </div>
 
                     <div className="py-3">
-                      <a
-                        href="#"
-                        className="group flex items-center px-6 py-3 text-sm text-gray-700 transition-all duration-200 hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-600"
-                      >
-                        <Settings
-                          size={18}
-                          className="mr-3 text-gray-400 transition-colors duration-200 group-hover:text-blue-500"
-                        />
-                        <Link
-                          to={`/admin/settings/${user?.id}`}
-                          className="group-hover:text-gray-900 dark:group-hover:text-white"
-                        >
-                          Account Settings
-                        </Link>
-                      </a>
+                     
                       <div className="my-2 border-t border-gray-200/50 dark:border-gray-600/50"></div>
                       <LogOut/>
                     </div>

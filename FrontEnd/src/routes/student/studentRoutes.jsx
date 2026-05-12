@@ -33,6 +33,7 @@ const StudentRoutes = () => {
       title: "ToDo List",
       icon: <ListTodo />,
       path: "/student/ToDoList",
+      notif : ""
     },
     {
       title: "Completed Tasks",
@@ -40,11 +41,7 @@ const StudentRoutes = () => {
       path: "/student/completed-tasks",
     },
     
-    {
-      title: "Profile",
-      icon: <Settings />,
-      path: "/student/profile",
-    },
+    
   ];
   return (
     <>

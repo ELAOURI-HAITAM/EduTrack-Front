@@ -1,6 +1,5 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import ProfessorDashboard from "../../pages/professor/dashboard";
 import {
   BookOpen,
   ChartNoAxesCombined,
@@ -11,6 +10,7 @@ import {
   Users,
   
 } from "lucide-react";
+import ProfessorDashboard from "../../pages/professor/dashboard";
 import Sidebar from "../../layouts/sidebar";
 import LinkComponent from "../../components/LinkComponent/linkComponent";
 import ProfessorModules from "../../features/professor/modules/modulesList";
@@ -46,11 +46,7 @@ const ProfessorRoutes = () => {
       icon: <Users />,
       path: "/professor/my-community",
     },
-    {
-      title: "Profile",
-      icon: <Settings />,
-      path: "/professor/profile",
-    },
+    
   ];
   return (
     <>
