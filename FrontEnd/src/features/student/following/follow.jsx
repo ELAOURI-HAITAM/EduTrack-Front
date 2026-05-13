@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
 import MainButton from "../../../components/Buttons/main_button";
-import { Info, User, UserPlus } from "lucide-react";
+import { Check, Info, User, UserPlus } from "lucide-react";
 import FormModal from "../../../components/modal/formModal";
 import { useGetAllProfessors } from "../../../hooks/useProfessors";
 import SimpleInput from "../../../components/inputs/simpleInput";
@@ -8,16 +8,22 @@ import Loader from "../../../components/loading/loader";
 import SimpleAlert from "../../../components/alerts/simpleAlert";
 import Male from "../../../assets/auth/Man.png";
 import SimpleOutLineButton from "../../../components/Buttons/simpleOutLine";
-import { useNewSubscribe } from "../../../hooks/useSubscribe";
+import { useGetFollowing, useNewSubscribe } from "../../../hooks/useSubscribe";
+import { UseUser } from "../../../hooks/useUser";
 const Follow = () => {
   const [search, setSearch] = useState("");
   const [openModal, setOpenModal] = useState(false);
-
+  
   const openDialog = () => setOpenModal(true);
   const closeDialog = () => setOpenModal(false);
 
   const { data: professors, isPending } = useGetAllProfessors();
-  console.log(professors);
+  
+  const { data: followingList } = useGetFollowing(); 
+  console.log(followingList);
+  
+  const { data: user } = UseUser();
+  const { mutate: newFollow } = useNewSubscribe();
 
   const filteredProfessors = useMemo(() => {
     if (!professors || search.trim() === "") return [];
@@ -29,10 +35,16 @@ const Follow = () => {
     );
   }, [search, professors]);
 
-  const { mutate: newFollow } = useNewSubscribe();
   const handleFollow = (id) => {
     newFollow(id);
-    closeDialog()
+    closeDialog();
+  };
+
+  const checkIfFollowed = (profId) => {
+    if (!followingList) return false;
+    return followingList.some(
+      (sub) => sub.professor_id === profId && sub.is_follow === true
+    );
   };
 
   return (
@@ -60,27 +72,39 @@ const Follow = () => {
           {isPending ? (
             <Loader />
           ) : filteredProfessors.length > 0 ? (
-            filteredProfessors.map((prof) => (
-              <div
-                key={prof.id}
-                className="border p-3 bg-[#437eff] rounded-lg flex justify-between items-center"
-              >
-                <div className="flex items-center gap-12">
-                  <img className="w-12" src={Male} alt="" />
-                  <h1 className="font-semibold text-2xl">
-                    {prof.first_name.toUpperCase()}{" "}
-                    {prof.last_name.toUpperCase()}
-                  </h1>
+            filteredProfessors.map((prof) => {
+              const isFollowed = checkIfFollowed(prof.id);
+
+              return (
+                <div
+                  key={prof.id}
+                  className="border p-3 bg-purple-50 dark:bg-gray-800 rounded-lg flex justify-between items-center"
+                >
+                  <div className="flex items-center gap-4">
+                    <img className="w-12 h-12 rounded-full border-2 border-purple-200" src={Male} alt="prof" />
+                    <h1 className="font-semibold text-lg text-gray-800 dark:text-white">
+                      {prof.first_name.toUpperCase()} {prof.last_name.toUpperCase()}
+                    </h1>
+                  </div>
+
+                  {isFollowed ? (
+                    <SimpleOutLineButton
+                    hoverBg="cursor-not-allowed"
+                      name="Followed"
+                      icon={<Check size={16} />}
+                      
+                      disabled={true}
+                    />
+                  ) : (
+                    <MainButton
+                      onclick={() => handleFollow(prof.id)}
+                      bgColor="bg-purple-600 hover:bg-purple-700"
+                      name={"Follow"}
+                    />
+                  )}
                 </div>
-
-                <MainButton
-                  onclick={() => handleFollow(prof.id)}
-                  bgColor="bg-red-600"
-                  name={"Follow"}
-
-                />
-              </div>
-            ))
+              );
+            })
           ) : (
             <SimpleAlert
               className={"mt-2"}

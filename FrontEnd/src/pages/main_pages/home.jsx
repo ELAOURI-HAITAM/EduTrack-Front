@@ -15,7 +15,7 @@ const Home = () => {
         data-aos-delay="200"
         data-aos-duration="800"
         id="home"
-        className="flex min-h-screen items-center bg-gradient-to-br from-blue-50 to-purple-50 pt-16 transition-all ease-in-out"
+        className="flex min-h-screen items-center bg-linear-to-br from-blue-50 to-purple-50 pt-16 transition-all ease-in-out"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
@@ -23,7 +23,7 @@ const Home = () => {
               <div className="space-y-4">
                 <h1 className="text-4xl leading-tight font-bold text-gray-900 md:text-6xl">
                   Welcome to{" "}
-                  <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                  <span className="bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                     EduTrack
                   </span>
                 </h1>
@@ -47,11 +47,11 @@ const Home = () => {
 
             <div className="relative">
               <div className="relative z-10">
-                <div className="flex h-96 w-full items-center justify-center rounded-2xl bg-gradient-to-br from-blue-400 to-purple-500 shadow-2xl">
+                <div className="flex h-96 w-full items-center justify-center rounded-2xl bg-linear-to-br from-blue-400 to-purple-500 shadow-2xl">
                   <img src={Welcom} width={470} />
                 </div>
               </div>
-              <div className="absolute -top-4 -right-4 h-96 w-full rounded-2xl bg-gradient-to-br from-blue-300 to-purple-400 opacity-50"></div>
+              <div className="absolute -top-4 -right-4 h-96 w-full rounded-2xl bg-linear-to-br from-blue-300 to-purple-400 opacity-50"></div>
             </div>
           </div>
         </div>

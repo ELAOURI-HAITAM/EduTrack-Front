@@ -11,7 +11,7 @@ const About = () => {
       data-aos-delay="200"
       data-aos-duration="800"
       id="about"
-      className="transition-all ease-in-out bg-gradient-to-br from-blue-50 to-purple-50 py-20"
+      className="transition-all ease-in-out bg-linaer-to-br from-blue-50 to-purple-50 py-20"
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">

@@ -23,6 +23,8 @@ const CreateAssignment = () => {
   const closeDialog = () => setOpenModal(false);
   const { data: modules, idLoading, isError } = useGetModule();
   const { mutate: newResource, idPending: isAdding } = useNewTask();
+  console.log(newResource);
+  
   const handleUplaodTask = () => {
     const formData = new FormData();
     formData.append("title", title);

@@ -1,6 +1,7 @@
 import React from "react";
 import { Clock, MessageSquare, ChevronRight } from "lucide-react";
-
+import StudentMale from "../../../assets/auth/student.png"
+import StudentFemale from "../../../assets/auth/student_female.png"
 const StudentTrackingRow = ({
   student_name,
   created_at,
@@ -9,6 +10,7 @@ const StudentTrackingRow = ({
   actual_minutes,
   estimated_minutes,
   comment,
+  gender
 }) => {
   const isOvertime = actual_minutes > estimated_minutes;
 
@@ -18,7 +20,7 @@ const StudentTrackingRow = ({
         
         <div className="flex items-center gap-3 w-64">
           <div className="h-10 w-10 rounded-full bg-linear-to-tr from-purple-500 to-indigo-500 flex items-center justify-center text-white shadow-sm font-bold">
-            {student_name.charAt(0).toUpperCase()}
+            {gender == "Male" ? (<img src={StudentMale}/>) : (<img src={StudentFemale}/>)} 
           </div>
           <div>
             <h4 className="font-bold text-gray-800 dark:text-white leading-none">{student_name}</h4>
@@ -60,9 +62,7 @@ const StudentTrackingRow = ({
           )}
         </div>
 
-        <div className="hidden lg:block text-gray-200 group-hover:text-purple-400 transition-colors">
-          <ChevronRight size={20} />
-        </div>
+       
       </div>
     </div>
   );

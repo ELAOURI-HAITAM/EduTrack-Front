@@ -8,7 +8,8 @@ const StudentTrackingPage = () => {
   const { data, isLoading, isError } = useGetStudentTracking();
   const [searchTerm, setSearchTerm] = useState("");
   const [filterDifficulty, setFilterDifficulty] = useState("All");
-
+  const [filtredGender , setFiltredGender] = useState("All");
+  const [filtering , setFiltering] = useState();
   if (isLoading) return <div className="p-10 text-center font-bold">Loading Tracking Data...</div>;
   if (isError) return <div className="p-10 text-center text-red-500 font-bold">Error loading data.</div>;
 
@@ -18,7 +19,8 @@ const StudentTrackingPage = () => {
     const matchesSearch = item.student_name.toLowerCase().includes(searchTerm.toLowerCase()) || 
                          item.resource_title.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesDifficulty = filterDifficulty === "All" ? true : item.difficulty === filterDifficulty;
-    return matchesSearch && matchesDifficulty;
+    const matchesGender = filtredGender == "All" ? true : item.student_gender == filtredGender
+    return matchesSearch && matchesDifficulty && matchesGender;
   });
 
   return (
@@ -49,22 +51,35 @@ const StudentTrackingPage = () => {
           <input 
             type="text"
             placeholder="Search by student or lesson..."
-            className="w-full pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-400 outline-none dark:bg-gray-700 dark:border-gray-600"
+            className="w-full text-white pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-400 outline-none dark:bg-gray-700 dark:border-gray-600"
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         
         <div  className="flex items-center gap-2">
           <Filter size={18} className="text-gray-400" />
-          <select 
-            className="border rounded-lg p-2 outline-none dark:bg-gray-700 dark:border-gray-600"
+          <select onChange={(event) => setFiltering(event.target.value)} className="border text-white rounded-lg p-2 outline-none dark:bg-gray-700 dark:border-gray-600" name="" id="">
+            <option value="All">Filter By</option>
+            <option value="gender">Filter By Gender</option>
+            <option value="difficulty">Filter By Difficulty</option>
+          </select>
+          {filtering == "gender" ? (<select 
+            className="border rounded-lg text-white p-2 outline-none dark:bg-gray-700 dark:border-gray-600"
+            onChange={(e) => setFiltredGender(e.target.value)}
+          >
+            <option value="All">Genders</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>) : (<select 
+            className="border text-white rounded-lg p-2 outline-none dark:bg-gray-700 dark:border-gray-600"
             onChange={(e) => setFilterDifficulty(e.target.value)}
           >
             <option value="All">All Difficulties</option>
             <option value="Hard">Hard Only</option>
             <option value="Medium">Medium Only</option>
             <option value="Easy">Easy Only</option>
-          </select>
+          </select>)}
+         
         </div>
       </div>
 
@@ -82,6 +97,7 @@ const StudentTrackingPage = () => {
               actual_minutes={item.actual_minutes}
               estimated_minutes={item.estimated_minutes}
               comment={item.comment}
+              gender={item.student_gender}
             />
           ))
         ) : (

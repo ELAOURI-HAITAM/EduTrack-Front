@@ -46,11 +46,7 @@ const ProfessorRoutes = () => {
       icon: <Users />,
       path: "/professor/my-community",
     },
-    {
-      title: "Profile",
-      icon: <Settings />,
-      path: "/professor/profile",
-    },
+    
   ];
   return (
     <>
@@ -64,7 +60,6 @@ const ProfessorRoutes = () => {
           <Route path="/professor/assignments" element={<ProfessorAssignments />} />
        <Route path="/professor/student-tracking" element={<StudentTrackingPage />} />
         <Route path="/professor/my-community" element={<ProfessorFollowers />} />
-        <Route path="/professor/profile" element={<ProfessorProfile />} />
       </Route>
     </>
   );

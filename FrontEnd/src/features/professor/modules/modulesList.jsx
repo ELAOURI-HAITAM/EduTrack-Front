@@ -9,6 +9,7 @@ import DeleteModule from "./deleteModule";
 const ProfessorModules = () => {
   const { data: modules, isLoading, isError } = useGetModule();
 
+
   return (
     <>
       <CreateModules />

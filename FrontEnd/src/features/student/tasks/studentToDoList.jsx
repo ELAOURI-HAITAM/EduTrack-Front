@@ -19,6 +19,8 @@ import SimpleAlert from "../../../components/alerts/simpleAlert";
 
 const StudentToDoList = () => {
   const { data: tasks, isPending } = useGetAllTasks();
+  console.log(tasks);
+
   const { mutate: submitNewTask } = useSubmitTask();
   const [selectedTask, setSelectedTask] = useState();
   const [actualMinutes, setActualMinutes] = useState("");
@@ -52,65 +54,60 @@ const StudentToDoList = () => {
   };
   return (
     <>
-    <div data-aos="fade-down"
-            data-aos-delay="200"
-            data-aos-duration="800">
-{tasks?.length < 1 ? (
-        <SimpleAlert
-        
-          className={"mt-2"}
-          icon={Info}
-          color={"info"}
-          message={"There No Tasks"}
-        />
-      ) : (
-        tasks?.map((task) => (
-          <div  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <TodoTaskCard
-
-              task_id={task.resource_id}
-              module_title={task.module_title}
-              icon={
-                task.task_type == "Exercice" ? (
-                  <ClipboardList />
-                ) : (
-                  <GiOpenBook />
-                )
-              }
-              task_title={task.title}
-              estimated_minutes={task.estimated_minutes}
-              task_type={task.task_type}
-              key={task.resource_id}
-              task={task}
-              ResourceButton={
-                <MainButton
-                  onclick={() => handleOpenFile(task.file_url)}
-                  bgColor="white"
-                  primaryTextColor="black"
-                  name="Open Resource"
-                  icon={<ExternalLink size={20} />}
-                  className="flex hover:scale-105 items-center justify-center gap-2 w-full py-2 px-4 bg-gray-50 hover:bg-gray-100 text-gray-700 font-medium rounded-lg border border-gray-200 transition-colors"
-                  type="button"
+      <div data-aos="fade-down" data-aos-delay="200" data-aos-duration="800">
+        {tasks?.length < 1 ? (
+          <SimpleAlert
+            className={"mt-2"}
+            icon={Info}
+            color={"info"}
+            message={"There No Tasks"}
+          />
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {tasks?.map((task) => (
+              <div key={task.resource_id} >
+                <TodoTaskCard
+                  task_id={task.resource_id}
+                  module_title={task.module_title}
+                  icon={
+                    task.task_type == "Exercice" ? (
+                      <ClipboardList />
+                    ) : (
+                      <GiOpenBook size={25} />
+                    )
+                  }
+                  task_title={task.title}
+                  estimated_minutes={task.estimated_minutes}
+                  task_type={task.task_type}
+                  task={task}
+                  ResourceButton={
+                    <MainButton
+                      onclick={() => handleOpenFile(task.file_url)}
+                      bgColor="white"
+                      primaryTextColor="black"
+                      name="Open Resource"
+                      icon={<ExternalLink size={20} />}
+                      className="flex hover:scale-105 items-center justify-center gap-2 w-full py-2 px-4 bg-gray-50 hover:bg-gray-100 text-gray-700 font-medium rounded-lg border border-gray-200 transition-colors"
+                      type="button"
+                    />
+                  }
+                  MarkAsDoneButton={
+                    <MainButton
+                      onclick={() => {
+                        getSelectedTask(task.resource_id);
+                      }}
+                      name="Mark as Done"
+                      icon={<CircleCheckBig />}
+                      className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg transition-all shadow-sm"
+                      type="button"
+                    />
+                  }
                 />
-              }
-              MarkAsDoneButton={
-                <MainButton
-                  onclick={() => {
-                    getSelectedTask(task.resource_id);
-                  }}
-                  name="Mark as Done"
-                  icon={<CircleCheckBig />}
-                  className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-lg transition-all shadow-sm"
-                  type="button"
-                />
-              }
-            />
+              </div>
+            ))}
           </div>
-        ))
-      )}
-    </div>
-      
-      
+        )}
+      </div>
 
       <FormModal
         show={openModal}

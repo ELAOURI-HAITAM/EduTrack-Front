@@ -2,6 +2,7 @@ import React from "react";
 
 const SimpleOutLineButton = ({
   name,
+  disabled,
   borderColor = "border-red-500",
   textColor = "text-red-700",
   hoverBg = "hover:bg-red-600",
@@ -12,6 +13,7 @@ const SimpleOutLineButton = ({
 }) => {
   return (
     <button
+    disabled={disabled}
       onClick={onclick}
       type="button"
       className={`

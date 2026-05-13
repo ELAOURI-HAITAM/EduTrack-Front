@@ -9,7 +9,6 @@ import { useGetResourceDetails, useUpdateResource } from "../../../hooks/useReso
 
 const UpdateResource = ({ id }) => {
   const { data: resource, isLoading } = useGetResourceDetails(id);
-  console.log(resource);
   
   const [title, setTitle] = useState("");
   const [taskType, setTaskType] = useState("");

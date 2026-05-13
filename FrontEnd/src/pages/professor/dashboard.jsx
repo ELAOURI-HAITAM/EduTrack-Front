@@ -26,9 +26,14 @@ const ProfessorDashboard = () => {
           subsCount={professor?.stats.total_subs}
           difficultyCount={professor?.stats.total_tasks}
         />
-        <div className="">
+        <div className="flex flex-col lg:flex-row gap-6">
+          <div className="flex-1">
         <GenderPieChart males={professor?.stats.total_genders.males} females={professor?.stats.total_genders.females}/>
+
+          </div>
+          <div className="flex-1">
         <DifficultyBarChart difficultyData={professor?.difficulty_analysis}/>
+          </div>
         </div>
       </div>
     </div>

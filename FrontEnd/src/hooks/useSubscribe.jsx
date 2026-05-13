@@ -14,10 +14,10 @@ export const useNewSubscribe = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["subscriptions"] });
       Swal.fire({
-        icon : "info",
-        title : "Following",
-        text : "You Have Followed "
-      })
+        icon: "info",
+        title: "Following",
+        text: "You Have Followed ",
+      });
     },
   });
 };
@@ -29,10 +29,10 @@ export const useRemoveSubscribe = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["subscriptions"] });
       Swal.fire({
-        icon : "info",
-        title : "Unfollowing",
-        text : "You Have Unfollowed "
-      })
+        icon: "info",
+        title: "Unfollowing",
+        text: "You Have Unfollowed ",
+      });
     },
   });
 };
@@ -50,3 +50,5 @@ export const useGetFollowing = () => {
     queryFn: allFollowing,
   });
 };
+
+
