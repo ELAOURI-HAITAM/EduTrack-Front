@@ -7,6 +7,7 @@ import SimpleInput from "../../../components/inputs/simpleInput";
 import Loader from "../../../components/loading/loader";
 import SimpleAlert from "../../../components/alerts/simpleAlert";
 import Male from "../../../assets/auth/Man.png";
+import Female from "../../../assets/auth/Woman.png";
 import SimpleOutLineButton from "../../../components/Buttons/simpleOutLine";
 import { useGetFollowing, useNewSubscribe } from "../../../hooks/useSubscribe";
 import { UseUser } from "../../../hooks/useUser";
@@ -20,7 +21,6 @@ const Follow = () => {
   const { data: professors, isPending } = useGetAllProfessors();
   
   const { data: followingList } = useGetFollowing(); 
-  console.log(followingList);
   
   const { data: user } = UseUser();
   const { mutate: newFollow } = useNewSubscribe();
@@ -81,7 +81,8 @@ const Follow = () => {
                   className="border p-3 bg-purple-50 dark:bg-gray-800 rounded-lg flex justify-between items-center"
                 >
                   <div className="flex items-center gap-4">
-                    <img className="w-12 h-12 rounded-full border-2 border-purple-200" src={Male} alt="prof" />
+                    {prof.gender == "Male" ? (<img src={Male} className="w-12 h-12 rounded-full border-2 border-purple-200"  alt="prof" />) : (<img src={Female} className="w-12 h-12 rounded-full border-2 border-purple-200"  alt="prof" />)}
+                    
                     <h1 className="font-semibold text-lg text-gray-800 dark:text-white">
                       {prof.first_name.toUpperCase()} {prof.last_name.toUpperCase()}
                     </h1>

@@ -1,6 +1,7 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const fetchUser = async () => {
   const { data } = await axios.get("http://localhost:8000/users/me", {
@@ -8,6 +9,13 @@ const fetchUser = async () => {
   });
   return data;
 };
+
+
+const addEmail = async (newEmail) => {
+  const { data } = await axios.post("http://localhost:8000/users/add" , newEmail);
+  return data;
+};
+
 
 export const UseUser = () => {
   return useQuery({
@@ -17,3 +25,20 @@ export const UseUser = () => {
     staleTime: 1000 * 60 * 5,
   });
 };
+
+
+export const useAddUser = () => {
+  const queryClient = useQueryClient();
+    return useMutation({
+      mutationFn: addEmail,
+      onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ["user"] });
+        Swal.fire({
+          icon: "success",
+          title: "Domain Verified",
+          text: "Email Created Successfully",
+        });
+      },
+    });
+  };
+

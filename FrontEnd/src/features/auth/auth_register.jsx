@@ -18,7 +18,7 @@ import Swal from "sweetalert2";
 import FormModal from "../../components/modal/formModal";
 import OtpModal from "../../components/modal/otpModal";
 import SimpleSelect from "../../components/selects/SimpleSelect";
-
+import CreateEmail from "./createEmail";
 const AuthRegister = () => {
   const [showOtpModal, setShowOtpModal] = useState(false);
   const [email, setEmail] = useState("");
@@ -189,6 +189,7 @@ const handleProfile = async () => {
 
             <div className="text-left text-blue-500 hover:text-blue-700 transition-colors duration-300">
               <Link to={"/login"}>Already have an account? Login</Link>
+              <CreateEmail/>
             </div>
             <MainButton
               type={"submit"}

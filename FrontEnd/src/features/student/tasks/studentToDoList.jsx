@@ -51,6 +51,7 @@ const StudentToDoList = () => {
       resource_id: selectedTask,
     });
     closeDialog();
+   
   };
   return (
     <>

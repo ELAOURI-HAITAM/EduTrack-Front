@@ -10,13 +10,15 @@ import Follow from "./follow";
 const StudentFollowing = () => {
   const { data: subscriptions, isLoading, isError } = useGetFollowing();
   const [professorId , setProfessorId] = useState();
+  console.log(subscriptions);
+  
   const rows = subscriptions?.map((sub, index) => ({
     Nº: index + 1,
     "FIRST NAME": sub.first_name,
     "LAST NAME": sub.last_name,
     EMAIL: sub.email,
     PHONE: sub.phone,
-    ACTION: <Unfollow id={sub.id} />,
+    ACTION: <Unfollow id={sub.professor_id} />,
     
   }));
 
