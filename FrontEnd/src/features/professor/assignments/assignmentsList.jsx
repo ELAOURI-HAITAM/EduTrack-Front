@@ -2,33 +2,33 @@ import React from 'react';
 import CreateAssignment from './createAssignment';
 import { GridCol3 } from '../../../components/grid/gridCol';
 import { SimpleCard } from '../../../components/cards/simpleCard';
-import { useGetResources } from '../../../hooks/useResources';
-import DeleteResource from './deleteResource';
-import UpdateResource from './updateResource';
+import { useGetTasks } from '../../../hooks/useTasks';
+import DeleteTask from './deleteTask';
+import UpdateTask from './updateTask';
 import { BookSearch, ClipboardList, User } from 'lucide-react';
-import ResourceDetails from './resourceDetails';
+import TaskDetails from './taskDetails';
 
 const ProfessorAssignments = () => {
-    const {data : resources , isLaoding , isError} = useGetResources();
+    const {data : tasks , isLaoding , isError} = useGetTasks();
     return (
         <div>
             <CreateAssignment/>
             <GridCol3>
-        {resources?.map((resource) => (
+        {tasks?.map((task) => (
           <SimpleCard
-          DetailLink={<ResourceDetails resource_id={resource.id}/>}
-            icon={resource.task_type == "Exercice" ? (<ClipboardList size={25} />) : (<BookSearch size={25} />)}
-            key={resource.id}
+          DetailLink={<TaskDetails task_id={task.id}/>}
+            icon={task.task_type == "Exercice" ? (<ClipboardList size={25} />) : (<BookSearch size={25} />)}
+            key={task.id}
             UpdateButton={
-              <UpdateResource
-                id={resource.id}
-                oldTitle={resource.title}
-                oldDescription={resource.description}
+              <UpdateTask
+                id={task.id}
+                oldTitle={task.title}
+                oldDescription={task.description}
               />
             }
-            DeleteButton={<DeleteResource id={resource.id} />}
-            name={resource.title}
-            description={resource.description}
+            DeleteButton={<DeleteTask id={task.id} />}
+            name={task.title}
+            description={task.description}
           />
         ))}
       </GridCol3>

@@ -4,11 +4,11 @@ import { Pencil, File } from "lucide-react";
 import FormModal from "../../../components/modal/formModal";
 import SimpleInput from "../../../components/inputs/simpleInput";
 import SimpleSelect from "../../../components/selects/SimpleSelect";
-import { useGetResourceDetails, useUpdateResource } from "../../../hooks/useResources";
+import { useGetTaskDetails, useUpdateTask } from "../../../hooks/useTasks";
 
 
-const UpdateResource = ({ id }) => {
-  const { data: resource, isLoading } = useGetResourceDetails(id);
+const UpdateTask = ({ id }) => {
+  const { data: resource, isLoading } = useGetTaskDetails(id);
   
   const [title, setTitle] = useState("");
   const [taskType, setTaskType] = useState("");
@@ -20,7 +20,7 @@ const UpdateResource = ({ id }) => {
   const openDialog = () => setOpenModal(true);
   const closeDialog = () => setOpenModal(false);
 
-  const { mutate: updateResource, isPending: isUpdating } = useUpdateResource();
+  const { mutate: updateResource, isPending: isUpdating } = useUpdateTask();
 
   useEffect(() => {
     if (resource) {
@@ -117,4 +117,4 @@ const UpdateResource = ({ id }) => {
   );
 };
 
-export default UpdateResource;
+export default UpdateTask;

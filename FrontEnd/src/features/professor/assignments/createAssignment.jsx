@@ -6,7 +6,7 @@ import FormModal from "../../../components/modal/formModal";
 import SimpleInput from "../../../components/inputs/simpleInput";
 import SimpleSelect from "../../../components/selects/SimpleSelect";
 import MappingSelect from "../../../components/selects/mappingSelect";
-import { useNewTask } from "../../../hooks/useResources";
+import { useNewTask } from "../../../hooks/useTasks";
 
 const CreateAssignment = () => {
   const [title, setTitle] = useState("");

@@ -23,29 +23,32 @@ const StudentRoutes = () => {
       title: "DashBoard",
       icon: <LayoutDashboard />,
       path: "/student/dashboard",
+      notif : false
     },
     {
       title: "professors",
       icon: <Users />,
       path: "/student/my-professors",
+      notif : false
     },
     {
       title: "ToDo List",
       icon: <ListTodo />,
       path: "/student/ToDoList",
-      notif : ""
+      notif : true
     },
     {
       title: "Completed Tasks",
       icon: <ListChecks />,
       path: "/student/completed-tasks",
+      notif : false
     },
     
     
   ];
   return (
     <>
-      <Route element={<Sidebar links={<LinkComponent links={links} />} />}>
+      <Route element={<Sidebar links={<LinkComponent  links={links} />} />}>
         <Route path="/student/dashboard" element={<StudentDashboard />} />
         <Route path="/student/my-professors" element={<StudentFollowing />} />
         <Route path="/student/ToDoList" element={<StudentToDoList />} />

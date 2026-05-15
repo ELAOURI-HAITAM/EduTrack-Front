@@ -32,7 +32,7 @@ console.log(student);
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
           <ProgressRadialChart 
             completed={stats?.progress.completed} 
-            total={stats?.progress.total_resources} 
+            total={stats?.progress.total_tasks} 
             percentage={stats?.progress.percentage}
           />
 

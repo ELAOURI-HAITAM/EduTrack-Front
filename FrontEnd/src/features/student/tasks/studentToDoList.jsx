@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TodoTaskCard from "../../../components/cards/toDoCard";
-import { useGetAllTasks, useSubmitTask } from "../../../hooks/useTasks";
+import { useGetAllTasks, useSubmitTask } from "../../../hooks/useCompletedTasks";
 import FormModal from "../../../components/modal/formModal";
 import {
   CircleCheckBig,
@@ -39,8 +39,8 @@ const StudentToDoList = () => {
   const handleOpenFile = (url) => {
     window.open(`http://localhost:8000${url}`, "_blank");
   };
-  const getSelectedTask = (resourceId) => {
-    setSelectedTask(resourceId);
+  const getSelectedTask = (taskId) => {
+    setSelectedTask(taskId);
     openDialog();
   };
   const handleSubmit = () => {
@@ -48,7 +48,7 @@ const StudentToDoList = () => {
       actual_minutes: parseInt(actualMinutes),
       difficulty: selectedDifficulty,
       comment: comment,
-      resource_id: selectedTask,
+      task_id: selectedTask,
     });
     closeDialog();
    
@@ -66,9 +66,9 @@ const StudentToDoList = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tasks?.map((task) => (
-              <div key={task.resource_id} >
+              <div key={task.task_id} >
                 <TodoTaskCard
-                  task_id={task.resource_id}
+                  task_id={task.task_id}
                   module_title={task.module_title}
                   icon={
                     task.task_type == "Exercice" ? (
@@ -95,7 +95,7 @@ const StudentToDoList = () => {
                   MarkAsDoneButton={
                     <MainButton
                       onclick={() => {
-                        getSelectedTask(task.resource_id);
+                        getSelectedTask(task.task_id);
                       }}
                       name="Mark as Done"
                       icon={<CircleCheckBig />}

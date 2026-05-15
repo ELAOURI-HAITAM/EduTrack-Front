@@ -1,33 +1,67 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
 import Swal from "sweetalert2";
-import { completedTasks, getAllTasks, submitTask } from "../api/taskApi";
+import { getTaskDetails, getTasks, newUplaod, removeTask, updateTask } from "../api/task";
 
-export const useGetAllTasks = () => {
+
+
+export const useGetTasks = ()=>
+{
   return useQuery({
-    queryKey: ["tasks"],
-    queryFn: getAllTasks,
-  });
-};
+    queryKey : ["tasks"],
+    queryFn : getTasks
+  })
+}
 
-export const useSubmitTask = () => {
+export const useGetTaskDetails = (task_id)=>
+{
+  return useQuery({
+    queryKey : ["task" ,task_id],
+    queryFn : () => getTaskDetails(task_id)
+  })
+}
+export const useNewTask = () => {
   const queryClient = useQueryClient();
-
   return useMutation({
-    mutationFn: submitTask,
+    mutationFn: newUplaod,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["tasks"] });
       Swal.fire({
         icon: "success",
-        title: "Submiting Task !",
-        text: "You Submited Task successfully.",
+        title: "Assignment Task",
+        text: "Task Assign Successfully",
       });
     },
   });
 };
 
-export const useGetCompletedTasks = () => {
-  return useQuery({
-    queryKey: ["tasks"],
-    queryFn: completedTasks,
+export const useUpdateTask = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: updateTask,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      Swal.fire({
+         icon: "success",
+        title: "Task Updated!",
+        text: "Your Task has been updated successfully.",
+      })
+    },
+  });
+};
+
+
+export const useRemoveTask = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: removeTask,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["tasks"] });
+      Swal.fire({
+        icon: "success",
+        title: "Removing Task",
+        text: "Task removed Successfully",
+      });
+    },
   });
 };

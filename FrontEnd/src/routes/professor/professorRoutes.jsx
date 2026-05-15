@@ -17,7 +17,7 @@ import ProfessorModules from "../../features/professor/modules/modulesList";
 import ProfessorProfile from "../../features/professor/settings/profile";
 import ProfessorFollowers from "../../features/professor/community/professorFollowers";
 import ProfessorAssignments from "../../features/professor/assignments/assignmentsList";
-import ResourceDetails from "../../features/professor/assignments/resourceDetails";
+import TaskDetails from "../../features/professor/assignments/taskDetails";
 import StudentTrackingPage from "../../features/professor/tracking/studentTrackingPage";
 const ProfessorRoutes = () => {
   const links = [

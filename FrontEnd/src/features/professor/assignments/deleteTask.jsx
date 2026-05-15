@@ -5,9 +5,9 @@ import { useDeleteModule } from "../../../hooks/useModules";
 import FormModal from "../../../components/modal/formModal";
 import SimpleInput from "../../../components/inputs/simpleInput";
 import ConfirmationModal from "../../../components/modal/confirmationModal";
-import { useRemoveTask } from "../../../hooks/useResources";
+import { useRemoveTask } from "../../../hooks/useTasks";
 
-const DeleteResource = ({ id }) => {
+const DeleteTask = ({ id }) => {
 
 
   const { mutate: removeTask, isPending: isAdding } = useRemoveTask();
@@ -37,4 +37,4 @@ const DeleteResource = ({ id }) => {
   );
 };
 
-export default DeleteResource;
+export default DeleteTask;
