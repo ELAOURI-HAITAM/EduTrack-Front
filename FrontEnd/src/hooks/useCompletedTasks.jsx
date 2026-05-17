@@ -28,12 +28,12 @@ export const useSubmitTask = () => {
   });
 };
 
-export const useGetAllCompletedTasks = ()=>
-{
+export const useGetAllCompletedTasks = () => {
   return useQuery({
-    queryKey : ["completes"],
-    queryFn : completedTasks,
-    retry : false,
-    
-  })
-}
+    queryKey: ["completes_v2"], 
+    queryFn: completedTasks,
+    retry: false,
+    refetchOnWindowFocus: false,
+    staleTime: 1000 * 60 * 5,
+  });
+};

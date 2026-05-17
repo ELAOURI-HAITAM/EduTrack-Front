@@ -11,6 +11,7 @@ const StudentTrackingPage = () => {
   const [filterDifficulty, setFilterDifficulty] = useState("All");
   const [filtredGender, setFiltredGender] = useState("All");
   const [filtering, setFiltering] = useState("All");
+console.log(data);
 
   if (isLoading)
     return (
@@ -30,11 +31,11 @@ const StudentTrackingPage = () => {
 
   const filteredData = tracking?.filter((item) => {
     const matchesSearch =
-      item.student_name
+      item?.student_name
         .toLowerCase()
         .includes(searchTerm.toLowerCase()) ||
-      item.resource_title
-        .toLowerCase()
+      item?.resource_title
+        ?.toLowerCase()
         .includes(searchTerm.toLowerCase());
 
     const matchesDifficulty =
@@ -91,18 +92,9 @@ const StudentTrackingPage = () => {
       >
 
         <div className="relative w-full md:w-96">
-          <Search
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-            size={18}
-          />
+          
 
-          <input
-            type="text"
-            value={searchTerm}
-            placeholder="Search by student or lesson..."
-            className="w-full text-white pl-10 pr-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-400 outline-none dark:bg-gray-700 dark:border-gray-600"
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
+          
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
@@ -168,7 +160,7 @@ const StudentTrackingPage = () => {
               key={item.id}
               student_name={item.student_name}
               created_at={item.completed_at}
-              resource_title={item.resource_title}
+              resource_title={item.task_title}
               difficulty={item.difficulty}
               actual_minutes={item.actual_minutes}
               estimated_minutes={item.estimated_minutes}

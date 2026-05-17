@@ -3,22 +3,30 @@ import { useGetAllCompletedTasks } from "../../../hooks/useCompletedTasks";
 import SimpleAlert from "../../../components/alerts/simpleAlert";
 import { Info } from "lucide-react";
 import CompletedTaskCard from "../../../components/cards/completedTaskCard";
+import Loader from "../../../components/loading/loader";
+
 const StudentCompletedTasks = () => {
-  const { data: completes = [], isError } = useGetAllCompletedTasks();
-  console.log(completes);
-  if (isError) {
-    console.log(isError);
+  const { data: completes, isError, isLoading } = useGetAllCompletedTasks(); 
+
+  if (isLoading) {
+    return <div className="text-white p-4"><Loader/></div>;
   }
+
+  
+  if (isError) {
+    return <div className="text-red-500 p-4"><SimpleAlert icon={"error"} message={"Something Went Wrong"}/></div>;
+  }
+
   return (
     <div>
-      {completes?.length == 0 ? (
+      {(!completes || completes.length === 0) ? (
         <SimpleAlert
           color="info"
           message="There Is No Tasks Completed"
           icon={Info}
         />
       ) : (
-        completes?.map((completed_task) => (
+        completes.map((completed_task) => (
           <CompletedTaskCard
             key={completed_task?.id}
             module_title={completed_task?.module_title}
@@ -28,7 +36,7 @@ const StudentCompletedTasks = () => {
             completed_at={completed_task?.completed_at}
           />
         ))
-      )} 
+      )}
     </div>
   );
 };
