@@ -27,21 +27,17 @@ const NotificationItem = ({
     return formatDistanceToNowStrict(date, { addSuffix: true });
   };
 
-  const handleClick = () => {
-    onClick();
 
-    if (link) {
-      navigate(link);
-    }
-  };
 
   return (
     <div
-      onClick={handleClick}
-      className={`p-4 border-b last:border-0 cursor-pointer transition-colors ${
-        isRead ? "bg-white opacity-70" : "bg-purple-50 hover:bg-purple-100"
-      }`}
-    >
+    onClick={onClick}
+    className={`p-4 border-b last:border-0 cursor-pointer transition-colors ${
+      isRead
+        ? "bg-white opacity-70"
+        : "bg-purple-50 hover:bg-purple-100"
+    }`}
+  >
       <div className="flex justify-between items-start">
         <h4
           className={`text-sm font-bold ${

@@ -44,6 +44,8 @@ const AuthLogin = () => {
         navigate("/student/dashboard");
       } else if (role == "Professor") {
         navigate("/professor/dashboard");
+      } else {
+        navigate("/admin/dashboard");
       }
     } catch (error) {
       if (error.response && error.response.data) {
@@ -105,8 +107,10 @@ const AuthLogin = () => {
               icon={<LockKeyhole />}
               onchange={(event) => setPassword(event.target.value)}
             />
-            <div className="text-left">
+            <div className="text-blue-600 cursor-pointer underline hover:text-blue-950 duration-1000">
               <ForgetPassword modal_id={"reset-password"} />
+              <br />
+              <Link to={"/register"}>I Dont Have An Account </Link>
             </div>
             <MainButton
               type={"submit"}

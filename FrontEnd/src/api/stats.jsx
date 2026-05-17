@@ -10,3 +10,10 @@ export const fetchStudentStats = async () =>{
   const response = await apiClient.get("/students/my-stats");
   return response.data;
 }
+
+
+export const fetchAdminStats = async () =>
+{
+  const response = await apiClient.get("/admin/my-stats")
+  return response.data
+}

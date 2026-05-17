@@ -41,10 +41,7 @@ const LinkComponent = ({ links }) => {
                   : "text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-700"
               }`}
             >
-              {linkItem.path === "/student/ToDoList" &&
-                unseenTasks > 0 && (
-                  <NotificationCount notifCount={unseenTasks} />
-                )}
+              
 
               <div className="relative z-10 text-xl">
                 {linkItem.icon}

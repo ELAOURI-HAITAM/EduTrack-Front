@@ -68,17 +68,17 @@ const StudentTrackingPage = () => {
       >
         <TrackingSummaryCard
           title="Total Submissions"
-          value={summary.total_submissions}
+          value={summary?.total_submissions}
           icon={<Users size={24} />}
           colorTheme="purple"
         />
 
         <TrackingSummaryCard
           title="Struggling Students"
-          value={summary.struggling_students}
+          value={summary?.struggling_students}
           icon={<AlertTriangle size={24} />}
           colorTheme={
-            summary.struggling_students > 0 ? "red" : "green"
+            summary?.struggling_students > 0 ? "red" : "green"
           }
         />
       </div>

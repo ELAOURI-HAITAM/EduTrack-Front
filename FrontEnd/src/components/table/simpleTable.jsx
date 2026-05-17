@@ -15,7 +15,7 @@ const SimpleTable = ({ headers, data, renderActions }) => {
       data-aos-duration="800"
       className="overflow-x-auto mt-4"
     >
-      <Table striped>
+      <Table className="text-center" striped>
         <TableHead>
           <TableRow>
             {headers?.map((header, index) => (

@@ -23,7 +23,7 @@ const OtpModal = ({
       <ModalHeader />
       <ModalBody>
         <form onSubmit={handleSubmit} className="space-y-6">
-          <h3 className="text-xl font-medium text-gray-900 dark:text-white">
+          <h3 className="text-xl font-medium text-white">
             {title}
           </h3>
           {children}

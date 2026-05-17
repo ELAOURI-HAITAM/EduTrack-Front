@@ -8,6 +8,7 @@ import StudentRoutes from "./student/studentRoutes";
 import ProfessorRoutes from "./professor/professorRoutes";
 import ProtectedRoute from "./Protected/protected_route";
 import Unauthorized from "../pages/page-not-found/unauthorized";
+import AdminRoutes from "./admin/adminRoutes";
 const AllRoutes = () => {
   return (
     <Routes>
@@ -18,6 +19,9 @@ const AllRoutes = () => {
       </Route>
       <Route element={<ProtectedRoute allowedRoles={["Professor"]} />}>
         {ProfessorRoutes()}
+      </Route>
+      <Route element={<ProtectedRoute allowedRoles={["Admin"]}/>}>
+        {AdminRoutes()}
       </Route>
       <Route path="/unauthorized" element={<Unauthorized />} />
     </Routes>

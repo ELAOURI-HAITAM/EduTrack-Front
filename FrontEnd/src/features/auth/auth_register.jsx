@@ -189,7 +189,6 @@ const handleProfile = async () => {
 
             <div className="text-left text-blue-500 hover:text-blue-700 transition-colors duration-300">
               <Link to={"/login"}>Already have an account? Login</Link>
-              <CreateEmail/>
             </div>
             <MainButton
               type={"submit"}

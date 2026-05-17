@@ -4,19 +4,27 @@ import CountInfos from "../../features/professor/dashboard/countInfos";
 import { useGetProfessorStats } from "../../hooks/useStats";
 import GenderPieChart from "../../features/professor/dashboard/pieChart";
 import DifficultyBarChart from "../../features/professor/dashboard/barChart";
+import { UseUser } from "../../hooks/useUser";
 
 const ProfessorDashboard = () => {
   const {data : professor , isLoading , isError} = useGetProfessorStats();
+  const {data : user} = UseUser();
+  console.log(user);
+  
   
   return (
     <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 animate-fadeIn">
-          <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-2">
-            Dashboard Overview
+          <h1 data-aos="fade-down"
+      data-aos-delay="200"
+      data-aos-duration="800"   className="text-4xl font-bold text-gray-800 dark:text-white mb-2">
+            Welcom Back Pr.{user?.last_name} {user?.first_name}
           </h1>
-          <p className="text-gray-600 dark:text-gray-300">
-            Welcome back! Here's what's happening with your organization today.
+          <p data-aos="fade-down"
+      data-aos-delay="200"
+      data-aos-duration="800" className="text-gray-600 dark:text-gray-300">
+            Here's what's happening with your organization today.
           </p>
         </div>
       </div>

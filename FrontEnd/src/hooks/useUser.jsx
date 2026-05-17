@@ -2,6 +2,7 @@ import React from "react";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { createUser, deleteUser, fetchUsers, getUserDetails, updateUser } from "../api/userApi";
 
 const fetchUser = async () => {
   const { data } = await axios.get("http://localhost:8000/users/me", {
@@ -41,4 +42,105 @@ export const useAddUser = () => {
       },
     });
   };
+
+
+
+
+export const useGetAllUsers = () =>
+{
+  return useQuery({
+    queryKey : ["users"],
+    queryFn : fetchUsers
+  })
+}
+
+
+export const useCreateUser = () => {
+  const queryClient = useQueryClient();
+  
+  return useMutation({
+    mutationFn: createUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+      Swal.fire({
+        icon: "success",
+        title: "User Created",
+        text: "User Created Successfully",
+      });
+    },
+
+    onError: (error) => {
+
+      const errorMessage = 
+        error.response?.data?.detail || 
+        error.response?.data?.message || 
+        "Something went wrong. Please try again!"; 
+
+     
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: errorMessage,
+        confirmButtonColor: "#d33", 
+      });
+    },
+  });
+};
+
+
+export const useUpdateUser = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: updateUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+      Swal.fire({
+         icon: "success",
+        title: "User Updated!",
+        text: "User has been updated successfully.",
+      })
+    },
+    onError: (error) => {
+
+      const errorMessage = 
+        error.response?.data?.detail || 
+        error.response?.data?.message || 
+        "Something went wrong. Please try again!"; 
+
+     
+      Swal.fire({
+        icon: "error",
+        title: "Error!",
+        text: errorMessage,
+        confirmButtonColor: "#d33", 
+      });
+    },
+  });
+};
+
+export const useDeleteUser = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deleteUser,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+       Swal.fire({
+         icon: "success",
+        title: "User Deleted!",
+        text: "User has been deleted successfully.",
+      })
+    },
+  });
+};
+
+
+
+export const useGetUserDetails = (user_id)=>
+{
+  return useQuery({
+    queryKey : ["user" ,user_id],
+    queryFn : () => getUserDetails(user_id)
+  })
+}
 

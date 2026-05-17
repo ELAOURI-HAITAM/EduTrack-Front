@@ -6,7 +6,15 @@ import { TiGroup } from "react-icons/ti";
 const ProfessorFollowers = () => {
     const {data : subscriptions , isLoading , isError} = useGetFollowers();
     console.log(subscriptions);
+      const rows = subscriptions?.map((sub, index) => ({
+    Nº: index + 1,
+    "FIRST NAME": sub.first_name,
+    "LAST NAME": sub.last_name,
+    EMAIL: sub.email,
+    GENDER: sub.gender,
+    BIRTH_DATE:sub.date 
     
+  }));
   const header = ["Nº","FISRT NAME", "LAST NAME", "EMAIL", "GENDER", "BIRTH DATE"];
   return (
     <div>
@@ -17,7 +25,7 @@ const ProfessorFollowers = () => {
         <TiGroup color="#437eff" size={40}/>
 
         </div>
-      <SimpleTable headers={header} data={subscriptions} />
+      <SimpleTable headers={header} data={rows} />
     </div>
   );
 };

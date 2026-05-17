@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchProfessorStats, fetchStudentStats } from "../api/stats";
+import { fetchAdminStats, fetchProfessorStats, fetchStudentStats } from "../api/stats";
 
 export const useGetProfessorStats = () => {
   return useQuery({
@@ -16,4 +16,14 @@ export const useGetStudentStats = () => {
     queryFn: fetchStudentStats,
     refetchInterval : 2000
   });
+}
+
+
+export const useGetAdminStats = () =>
+{
+  return useQuery({
+    queryKey : ["admin"],
+    queryFn : fetchAdminStats,
+    refetchInterval : 2000
+  })
 }

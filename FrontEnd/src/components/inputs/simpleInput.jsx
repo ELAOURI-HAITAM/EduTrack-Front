@@ -5,6 +5,7 @@ import { Eye, EyeOff } from "lucide-react";
 const SimpleInput = ({
   label,
   value,
+  disabled=false,
   read_only = false,
   icon,
   color,
@@ -30,6 +31,7 @@ const SimpleInput = ({
       </div>
       <div className="relative">
         <TextInput
+        disabled={disabled}
           readOnly={read_only}
           value={value}
           type={inputType}

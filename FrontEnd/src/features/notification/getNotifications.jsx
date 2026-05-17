@@ -16,7 +16,6 @@ const GetNotifications = () => {
   const { data: notifications, isLoading } = useGetAllNotifications();
   const { data: user } = UseUser();
   const { mutate: markAsRead } = useReadNotification();
-console.log(user);
 
   const unreadNotifications = notifications?.filter((n) => !n.is_read) || [];
   const unreadCount = unreadNotifications.length;
@@ -53,11 +52,6 @@ console.log(user);
                   title={notif.title}
                   message={notif.message}
                   createdAt={notif.created_at}
-                  link={
-                    notif.user_id == user.id && user.role == "Student"
-                      ? "/student/ToDoList"
-                      : "/professor/student-tracking"
-                  }
                   onClick={() => {
                     markAsRead(notif.id);
                   }}

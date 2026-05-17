@@ -1,12 +1,12 @@
 import { Label, Select } from "flowbite-react";
 
-const SimpleSelect = ({ label,text ,options, value, onchange, id = "select" }) => {
+const SimpleSelect = ({disabled=false, label,text ,options, value, onchange, id = "select" }) => {
   return (
     <div className="w-full">
       <div className="mb-2 block">
         <Label htmlFor={id}>{label}</Label>
       </div>
-      <Select  id={id} value={value} onChange={onchange} required className="w-full">
+      <Select disabled={disabled}  id={id} value={value} onChange={onchange} required className="w-full">
                 <option defaultValue={text}>{text}</option>
 
         {options?.map((option, index) => (
