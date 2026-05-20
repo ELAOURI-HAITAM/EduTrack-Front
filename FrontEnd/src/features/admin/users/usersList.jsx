@@ -12,14 +12,16 @@ import StudentFemale from "../../../assets/auth/student_female.png";
 import UpdateUser from "./updateUser";
 import DeleteUser from "./deleteUser";
 import SimpleSelect from "../../../components/selects/SimpleSelect";
+import ImportUsersExcel from "./importUsersExcel";
 const UsersList = () => {
   const { data: users, isLoading, isError } = useGetAllUsers();
   const [filtredRole, setFiltredRole] = useState();
   const filtred = filtredRole == "All" || !filtredRole ? users : users?.filter((user) => user.role == filtredRole)
+  console.log(users);
   
   const rows = filtred?.map((user, index) => ({
     Nº: index + 1,
-    "FIRST NAME": !user.first_name ? (
+    "FIRST NAME": !user.first_name?.[0]?.trim() ? (
       <p className="bg-orange-600 p-1 rounded-full text-center">Not Yet</p>
     ) : (
       user.first_name
@@ -70,7 +72,7 @@ const UsersList = () => {
 
   const header = [
     "Nº",
-    "FISRT NAME",
+    "FIRST NAME",
     "LAST NAME",
     "EMAIL",
     "Gender",
@@ -86,13 +88,17 @@ const UsersList = () => {
       data-aos-duration="800"
     >
       <div className="flex justify-between">
+        <div>
         <CreateUser />
-        <select onChange={(event) => setFiltredRole(event.target.value)} className="border w-40 text-white rounded-lg p-2 outline-none dark:bg-gray-700 dark:border-gray-600">
+        <ImportUsersExcel/>
+
+        </div>
+        {/* <select onChange={(event) => setFiltredRole(event.target.value)} className="border w-40 text-white rounded-lg p-2 outline-none dark:bg-gray-700 dark:border-gray-600">
           <option value="">Filter By Role</option>
           <option value="All">All</option>
           <option value="Student">Student</option>
           <option value="Professor">Professor</option>
-        </select>
+        </select> */}
       </div>
       {filtred?.length == 0 ? (
         <>

@@ -24,3 +24,12 @@ export const getUserDetails = async (id) => {
   const response = await apiClient.get(`/users/details/${id}`);
   return response.data;
 };
+
+export const importUsers = async (formData) => {
+  const response = await apiClient.post("/users/import-excel", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return response.data;
+};

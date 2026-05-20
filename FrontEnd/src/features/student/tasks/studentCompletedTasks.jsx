@@ -28,6 +28,7 @@ const StudentCompletedTasks = () => {
       ) : (
         completes.map((completed_task) => (
           <CompletedTaskCard
+          task_title={completed_task?.task_title}
             key={completed_task?.id}
             module_title={completed_task?.module_title}
             actual_minutes={completed_task?.actual_minutes}
