@@ -22,7 +22,7 @@ const OtpModal = ({
     <Modal show={show} size="md" onClose={onClose} popup>
       <ModalHeader />
       <ModalBody>
-        <form onSubmit={handleSubmit} className="text-white space-y-6">
+        <form onSubmit={handleSubmit} className="text-blue-400 space-y-6">
           <h3 className="text-xl font-medium text-white">
             {title}
           </h3>

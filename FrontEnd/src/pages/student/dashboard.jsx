@@ -3,10 +3,12 @@ import { useGetStudentStats } from "../../hooks/useStats";
 import StudentStatsCards from "../../features/student/stats/studentStatsCards";
 import ProgressRadialChart from "../../features/student/stats/progressRadialChart";
 import TimeAnalysisChart from "../../features/student/stats/timeAnalysisChart";
+import { UseUser } from "../../hooks/useUser";
 
 const StudentDashboard = () => {
   const { data: student, isLoading, isError } = useGetStudentStats();
-console.log(student);
+  console.log(student);
+  const { data: user} = UseUser();
 
   const stats = student?.stats;
 
@@ -14,10 +16,14 @@ console.log(student);
     <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 animate-fadeIn">
-          <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-2">
-            My Learning Journey
+          <h1 data-aos="fade-down"
+      data-aos-delay="200"
+      data-aos-duration="800"  className="text-4xl font-bold text-gray-800 dark:text-white mb-2">
+            Welcom Back Mr.{user?.last_name} {user?.first_name}
           </h1>
-          <p className="text-gray-600 dark:text-gray-300">
+          <p data-aos="fade-down"
+      data-aos-delay="200"
+      data-aos-duration="800"  className="text-gray-600 dark:text-gray-300">
             Track your progress, time efficiency, and subscriptions.
           </p>
         </div>

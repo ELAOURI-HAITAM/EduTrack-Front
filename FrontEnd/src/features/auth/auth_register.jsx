@@ -223,7 +223,7 @@ const handleProfile = async () => {
         action="Verify OTP"
       >
         {error && <SimpleAlert message={error} color={"failure"} />}
-        <p className="text-center text-gray-600">
+        <p className="text-center text-blue-500">
           Enter the 6-digit code sent to {email}
         </p>
       </OtpModal>
